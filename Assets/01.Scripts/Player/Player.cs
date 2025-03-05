@@ -14,7 +14,6 @@ namespace BGD.Players
         [field : SerializeField] public PlayerInputSO PlayerInput {get; private set;}
 
         [Header("Stat")]
-        public StatSO jumpCntStat;
         public StatSO jumpPowerStat;
 
         private StateMachine _stateMachine;
@@ -29,7 +28,6 @@ namespace BGD.Players
         protected override void AfterInitComponenets()
         {
             base.AfterInitComponenets();
-            jumpCntStat = GetCompo<AgentStat>().GetStat(jumpCntStat);
         }
 
         private void Update()
