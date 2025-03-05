@@ -44,8 +44,12 @@ namespace BGD.Casters
 
         private void OnDrawGizmosSelected()
         {
+            Vector2 castDir;
+            if (_agent == null)
+                castDir = new Vector2(castOffset.x * 1, castOffset.y);
+            else
+                castDir = new Vector2(castOffset.x * _agent.GetCompo<AgentRenderer>().FacingDirection, castOffset.y);
             Gizmos.color = Color.green;
-            Vector2 castDir = new Vector2(castOffset.x * _agent.GetCompo<AgentRenderer>().FacingDirection, castOffset.y);
 
             switch (castMethodType)
             {
