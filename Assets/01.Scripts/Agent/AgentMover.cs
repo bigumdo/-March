@@ -16,7 +16,7 @@ namespace BGD.Agents
 
         [Header("MoveStat")]
         [SerializeField] protected StatSO _moveSpeedStat;
-        private float _moveSpeed;
+        protected float _moveSpeed;
 
 
         [Header("AnimParams")]
@@ -36,7 +36,7 @@ namespace BGD.Agents
         {
             _agent = agent;
             _rbcompo = agent.GetComponent<Rigidbody2D>();
-            _renderer = agent.GetCompo<AgentRenderer>();
+            _renderer = agent.GetCompo<AgentRenderer>(true);
             _agentStat = agent.GetCompo<AgentStat>();
             _caster = agent.GetCompo<Caster>();
             _collider = agent.GetComponent<Collider2D>();

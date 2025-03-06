@@ -48,7 +48,7 @@ namespace BGD.Casters
             if (_agent == null)
                 castDir = new Vector2(castOffset.x * 1, castOffset.y);
             else
-                castDir = new Vector2(castOffset.x * _agent.GetCompo<AgentRenderer>().FacingDirection, castOffset.y);
+                castDir = new Vector2(castOffset.x * _agent.GetCompo<AgentRenderer>(true).FacingDirection, castOffset.y);
             Gizmos.color = Color.green;
 
             switch (castMethodType)

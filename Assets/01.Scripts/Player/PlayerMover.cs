@@ -38,6 +38,15 @@ namespace BGD.Players
             ResetJumpCnt();
         }
 
+        protected override void MoveCharacter()
+        {
+            if (CanMove)
+            {
+                _rbcompo.linearVelocityX = _xMovement * _moveSpeed;
+            }
+
+            _renderer.SetParam(_ySpeedParam, Velocity.y);
+        }
         public void DecreaseJumpCnt() => _currentJumpCnt--;
 
         public void ResetJumpCnt() => _currentJumpCnt = _maxJumpCnt;

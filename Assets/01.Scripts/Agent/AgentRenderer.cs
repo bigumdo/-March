@@ -5,18 +5,19 @@ namespace BGD.Agents
 {
     public class AgentRenderer : MonoBehaviour, IAgentComponent
     {
-        public float FacingDirection { get; private set; } = 1;
+        public float FacingDirection { get; protected set; } = 1;
 
         private Agent _agent;
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
 
-        public void Initialize(Agent agent)
+        public virtual void Initialize(Agent agent)
         {
             _agent = agent;
             _animator = GetComponent<Animator>();
             _spriteRenderer = agent.GetComponent<SpriteRenderer>();
         }
+
 
         public void SetParam(AnimParamSO paramSO, bool value) => _animator.SetBool(paramSO.hashValue, value);
 
@@ -24,13 +25,13 @@ namespace BGD.Agents
         public void SetParam(AnimParamSO paramSO, int value) => _animator.SetInteger(paramSO.hashValue, value);
         public void SetParam(AnimParamSO paramSO) => _animator.SetTrigger(paramSO.hashValue);
 
-        public void FlipControl(float xMove)
+        public virtual void FlipControl(float xMove)
         {
             if (Mathf.Abs(FacingDirection + xMove) < 0.5f)
                 Flip();
         }
 
-        public void Flip()
+        public virtual void Flip()
         {
             FacingDirection *= -1;
             _agent.transform.Rotate(0, 180, 0);

@@ -29,7 +29,7 @@ namespace BGD.Casters
         public void Initialize(Agent agent)
         {
             _agent = agent;
-            _agentRenderer = agent.GetCompo<AgentRenderer>();
+            _agentRenderer = agent.GetCompo<AgentRenderer>(true);
             _casters = new Dictionary<CastTypeEnum, BaseCaster>();
             BaseCaster[] casts = GetComponentsInChildren<BaseCaster>();//감지할 캐스트 종류를 가져옴
             foreach (BaseCaster c in casts)

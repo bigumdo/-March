@@ -10,12 +10,11 @@ namespace BGD.Players
         public event Action JumpEvent;
         public event Action DashEvent;
         public event Action AttackEvent;
-        //public event Action SlideEvent;
         public event Action GuardEvent;
         public event Action InteractEvent;
-        public event Action OpenMenu;
 
         public Vector2 InputDirection { get; private set; }
+        public Vector2 MouseDir { get; private set; }
 
         private Controls _controls;
 

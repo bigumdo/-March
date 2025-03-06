@@ -18,6 +18,7 @@ namespace BGD.Agents
         protected virtual void Awake()
         {
             _components = new Dictionary<Type, IAgentComponent>();
+            //(true)-> 비활성화 되어있는 오브젝트도 포함
             GetComponentsInChildren<IAgentComponent>(true).ToList()
                 .ForEach(component => _components.Add(component.GetType(), component));
 

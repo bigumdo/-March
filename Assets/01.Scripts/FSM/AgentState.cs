@@ -17,7 +17,7 @@ namespace BGD.FSM
         {
             _agent = agent;
             _animParam = animParam;
-            _renderer = agent.GetCompo<AgentRenderer>();
+            _renderer = agent.GetCompo<AgentRenderer>(true);
             _animTrigger = _agent.GetCompo<AgentAnimationTrigger>(true);
         }
 
