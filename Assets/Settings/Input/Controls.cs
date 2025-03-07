@@ -187,7 +187,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""17d8464b-1748-4078-b815-2d3bcd87f9ea"",
-                    ""path"": ""<Keyboard>/numpad9"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -1,3 +1,4 @@
+using BGD.Animators;
 using System;
 using UnityEngine;
 
@@ -8,5 +9,6 @@ namespace BGD.Weapons
         public event Action OnAnimationEndTrigger;
 
         public void AnimaitonEnd() => OnAnimationEndTrigger?.Invoke();
+
     }
 }
