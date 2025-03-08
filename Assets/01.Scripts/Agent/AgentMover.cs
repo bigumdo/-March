@@ -26,7 +26,7 @@ namespace BGD.Agents
         protected Agent _agent;
         protected AgentRenderer _renderer;
         protected AgentStat _agentStat;
-        protected Caster _caster;
+        protected AgentCaster _caster;
 
         protected float _xMovement;
 
@@ -38,7 +38,7 @@ namespace BGD.Agents
             _rbcompo = agent.GetComponent<Rigidbody2D>();
             _renderer = agent.GetCompo<AgentRenderer>(true);
             _agentStat = agent.GetCompo<AgentStat>();
-            _caster = agent.GetCompo<Caster>();
+            _caster = agent.GetCompo<AgentCaster>();
             _collider = agent.GetComponent<Collider2D>();
         }
 

@@ -11,6 +11,7 @@ namespace BGD.Players
     {
         public AgentStateListSO states;
         public AnimParamSO attackCompoParam;
+        public AgentHealth Health { get; private set; }
         [field : SerializeField] public PlayerInputSO PlayerInput {get; private set;}
 
         [Header("Stat")]
@@ -23,6 +24,7 @@ namespace BGD.Players
             base.Awake();
             _stateMachine = new StateMachine(this, states);
             _stateMachine.Initialize(FSMState.IDLE);
+            Health = GetCompo<AgentHealth>();
         }
 
         protected override void AfterInitComponenets()

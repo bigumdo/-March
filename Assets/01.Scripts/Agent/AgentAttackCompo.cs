@@ -8,7 +8,7 @@ namespace BGD.Agents
 {
     public class AgentAttackCompo : MonoBehaviour, IAgentComponent, IAfterInit
     {
-        private Caster _caster;
+        private AgentCaster _caster;
         private AgentMover _mover;
         private AgentStat _agentStat;
         private Dictionary<string, AttackDataSO> _attackDictionary;
@@ -23,7 +23,7 @@ namespace BGD.Agents
 
         public void Initialize(Agent agent)
         {
-            _caster = agent.GetCompo<Caster>();
+            _caster = agent.GetCompo<AgentCaster>();
             _mover = agent.GetCompo<AgentMover>();
             _agentStat = agent.GetCompo<AgentStat>();
             _animTrigger = agent.GetCompo<AgentAnimationTrigger>();

@@ -12,12 +12,12 @@ namespace BGD.Casters
     {
         Damge,
         AttackRnage,
-        PlayerAttack,
+        Bullet,
         Ground,
-        Wall
+        Wall,
     }
 
-    public class Caster : MonoBehaviour, IAgentComponent
+    public class AgentCaster : MonoBehaviour, IAgentComponent
     {
         private Agent _agent;
         private Dictionary<CastTypeEnum, BaseCaster> _casters; //CastÇÒ Á¾·ùDictionary

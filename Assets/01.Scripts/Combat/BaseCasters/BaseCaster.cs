@@ -25,6 +25,7 @@ namespace BGD.Casters
     {
         protected Agent _agent;
 
+        public ContactFilter2D contactFilter;
         public CastMethodType castMethodType;
         public CastTypeEnum castType;//캐스트 타입
         public LayerMask targetLayer;//어떤 것을 캐스트 할 것인가
