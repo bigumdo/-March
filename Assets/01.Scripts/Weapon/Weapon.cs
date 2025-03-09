@@ -1,3 +1,4 @@
+using BGD.Agents;
 using BGD.Animators;
 using BGD.Cores;
 using System;
@@ -7,16 +8,19 @@ namespace BGD.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        public bool isEndTrigger;
+        [HideInInspector] public WeaponAnimationTrigger animTrigger;
 
         [SerializeField] private Transform _firePos;
         [SerializeField] private AnimParamSO _shootParam;
+        [SerializeField] private GameObject _bulletPrefab;
 
-        [HideInInspector] public WeaponAnimationTrigger animTrigger;
         private WeaponRenderer _renderer;
+        private AgentWeapon _weapon;
+        private bool isEndTrigger;
 
         private void Awake()
         {
+            _weapon = transform.parent.GetComponent<AgentWeapon>();
             animTrigger = GetComponentInChildren<WeaponAnimationTrigger>();
             _renderer = GetComponentInChildren<WeaponRenderer>();
         }
@@ -24,11 +28,19 @@ namespace BGD.Weapons
         private void Start()
         {
             animTrigger.OnAnimationEndTrigger += HandleAttackEndTrigger;
+            animTrigger.OnAttackTrigger += HandleAttackTrigger;
         }
 
         private void OnDestroy()
         {
             animTrigger.OnAnimationEndTrigger -= HandleAttackEndTrigger;
+            animTrigger.OnAttackTrigger += HandleAttackTrigger;
+        }
+
+        private void HandleAttackTrigger()
+        {
+            GameObject bullet = Instantiate(_bulletPrefab, _firePos.position,Quaternion.identity);
+            bullet.transform.right = _firePos.right;
         }
 
         private void HandleAttackEndTrigger()

@@ -1,5 +1,6 @@
 using BGD.Agents;
 using BGD.Casters;
+using BGD.Interactions;
 using BGD.Players;
 using UnityEngine;
 
@@ -8,10 +9,10 @@ namespace BGD.Weapons
     public class PlayerBullet : MonoBehaviour
     {
         [SerializeField] private float _radius;
+        [SerializeField] private float _speed = 20;
 
         private float _damage;
         private Rigidbody2D _rbCompo;
-        private float _speed = 10;
 
         private void Awake()
         {
@@ -29,9 +30,9 @@ namespace BGD.Weapons
         {
             _rbCompo.linearVelocity = transform.right * _speed;
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, _radius, Vector2.zero);
-            if (hit.collider != null && hit.collider.TryGetComponent(out Player player))
+            if (hit.collider != null && hit.collider.TryGetComponent(out BaseInteraction interaction))
             {
-                player.heal
+                interaction.Interaction();
             }
         }
 

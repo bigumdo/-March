@@ -9,7 +9,7 @@ namespace BGD.Players
 {
     public class PlayerAttackState : AgentState
     {
-        private float _attackDelayTime;
+        //private float _attackDelayTime;
 
         private PlayerMover _mover;
         private AgentAttackCompo _attackCompo;
@@ -22,7 +22,7 @@ namespace BGD.Players
             _mover = agent.GetCompo<PlayerMover>();
             _attackCompo = agent.GetCompo<AgentAttackCompo>();
             _weapon = agent.GetCompo<AgentWeapon>();
-            _attackDelayTime = 0.2f;
+            //_attackDelayTime = 0.2f;
         }
 
         public override void Enter()

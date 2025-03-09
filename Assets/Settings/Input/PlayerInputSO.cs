@@ -10,7 +10,6 @@ namespace BGD.Players
         public event Action JumpEvent;
         public event Action DashEvent;
         public event Action AttackEvent;
-        public event Action GuardEvent;
         public event Action InteractEvent;
 
         public Vector2 InputDirection { get; private set; }
