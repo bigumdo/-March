@@ -1446,10 +1446,10 @@ MonoBehaviour:
   _statOverrides:
   - _stat: {fileID: 11400000, guid: 7b6ccebbdac34724d98514559591b26b, type: 2}
     _isUseOverride: 1
-    _overrideBaseValue: 5
+    _overrideBaseValue: 10
   - _stat: {fileID: 11400000, guid: 97b0b490323033f47a9f3242665815e4, type: 2}
     _isUseOverride: 1
-    _overrideBaseValue: 5
+    _overrideBaseValue: 8
   - _stat: {fileID: 11400000, guid: 43ed176d217014b4cb55d83b14ed0cc5, type: 2}
     _isUseOverride: 1
     _overrideBaseValue: 1
@@ -1984,11 +1984,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b0a92933910ba49aaf09d3f0bf303b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEndTrigger: 0
+  animTrigger: {fileID: 0}
   _firePos: {fileID: 529600772}
   _shootParam: {fileID: 11400000, guid: 9021ff2e5aa05fd4093b0985b7784cae, type: 2}
   _bulletPrefab: {fileID: 5312880458436843689, guid: e8f7c4be9759a394dbc0708ce5ec5d2c, type: 3}
-  animTrigger: {fileID: 0}
+  _weaponDataSO: {fileID: 11400000, guid: 28faddd7a93e09d4e99d62b77d442d20, type: 2}
 --- !u!1 &1452135227
 GameObject:
   m_ObjectHideFlags: 0

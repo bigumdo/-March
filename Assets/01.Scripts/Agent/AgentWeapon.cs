@@ -13,6 +13,8 @@ namespace BGD.Agents
 
         private Player _player;
         private PlayerRenderer _renderer;
+
+        private float shootingDelay;
         public void Initialize(Agent agent)
         {
             _player = agent as Player;
@@ -31,7 +33,8 @@ namespace BGD.Agents
 
         private void HandleAttackHandle()
         {
-            CurrentWeapon.Shooting();
+            if(CurrentWeapon.CanShoot)
+                CurrentWeapon.Shooting();
         }
 
         private void Update()

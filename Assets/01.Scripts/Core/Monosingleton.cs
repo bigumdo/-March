@@ -17,7 +17,7 @@ namespace BGD.Cores
                 }
                 if (_instance == null)
                 {
-                    _instance = GameObject.FindObjectOfType<T>();
+                    _instance = GameObject.FindFirstObjectByType<T>();
                     if (_instance == null)
                     {
                         Debug.LogError($"{typeof(T).Name} singletone is not exist");
