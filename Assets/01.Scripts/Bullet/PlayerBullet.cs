@@ -10,6 +10,7 @@ namespace BGD.Weapons
     {
         [SerializeField] private float _radius;
         [SerializeField] private float _speed = 20;
+        [SerializeField] LayerMask _targetLayer;
 
         private float _damage;
         private Rigidbody2D _rbCompo;
@@ -29,7 +30,7 @@ namespace BGD.Weapons
         private void FixedUpdate()
         {
             _rbCompo.linearVelocity = transform.right * _speed;
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position, _radius, Vector2.zero);
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, _radius, Vector2.zero, 0, _targetLayer);
             if (hit.collider != null && hit.collider.TryGetComponent(out BaseInteraction interaction))
             {
                 interaction.Interaction();

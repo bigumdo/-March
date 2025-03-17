@@ -50,6 +50,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 0.13
   _speed: 150
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &1904713857837354118
 Rigidbody2D:
   serializedVersion: 5
