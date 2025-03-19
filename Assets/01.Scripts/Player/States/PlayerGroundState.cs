@@ -20,13 +20,13 @@ namespace BGD.Players
         public override void Enter()
         {
             base.Enter();
-            _player.PlayerInput.AttackEvent += HandleAttackEvent;
+            //_player.PlayerInput.AttackEvent += HandleAttackEvent;
             _player.PlayerInput.JumpEvent += HandleJumpEvent;
         }
 
         public override void Exit()
         {
-            _player.PlayerInput.AttackEvent -= HandleAttackEvent;
+            //_player.PlayerInput.AttackEvent -= HandleAttackEvent;
             _player.PlayerInput.JumpEvent -= HandleJumpEvent;
             base.Exit();
         }

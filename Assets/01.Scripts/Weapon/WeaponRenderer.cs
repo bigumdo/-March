@@ -12,7 +12,11 @@ namespace BGD.Weapons
             _animator = GetComponent<Animator>();
         }
 
-        public void SetParam(AnimParamSO animParam, bool value) => _animator.SetBool(animParam.hashValue, value);
+        //public void SetParam(AnimParamSO animParam, bool value) => _animator.SetBool(animParam.hashValue, value);
+        public void SetParam(AnimParamSO animParam, bool value)
+        {
+            _animator.SetBool(animParam.hashValue, value);
+        }
         public void SetParam(AnimParamSO animParam) => _animator.SetTrigger(animParam.hashValue);
 
 

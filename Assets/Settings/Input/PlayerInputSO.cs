@@ -11,6 +11,7 @@ namespace BGD.Players
         public event Action DashEvent;
         public event Action AttackEvent;
         public event Action InteractEvent;
+        public event Action ReloadAction;
 
         public Vector2 InputDirection { get; private set; }
         public Vector2 MouseDir { get; private set; }
@@ -61,6 +62,12 @@ namespace BGD.Players
         {
             if (context.performed)
                 DashEvent?.Invoke();
+        }
+
+        public void OnReload(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+                ReloadAction?.Invoke();
         }
     }
 }

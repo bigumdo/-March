@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace BGD.Weapons
 {
-    public enum WeaonStateEnum
+    public enum WeaponStateEnum
     {
         Idle,
         Shooting,
-        Reloading,
+        Reload,
         Empty
     }
 

@@ -5,11 +5,9 @@ using UnityEngine;
 
 namespace BGD.Agents
 {
-    public class AgentWeapon : MonoBehaviour, IAgentComponent, IAfterInit
+    public class AgentWeapon : MonoBehaviour, IAgentComponent
     {
         public Weapon CurrentWeapon { get; private set; }
-
-        [SerializeField] private PlayerInputSO _playerInput;
 
         private Player _player;
         private PlayerRenderer _renderer;
@@ -20,21 +18,6 @@ namespace BGD.Agents
             _player = agent as Player;
             _renderer = agent.GetCompo<PlayerRenderer>();
             CurrentWeapon = GetComponentInChildren<Weapon>();
-        }
-        public void AfterInit()
-        {
-            _playerInput.AttackEvent += HandleAttackHandle;
-        }
-
-        private void OnDestroy()
-        {
-            _playerInput.AttackEvent -= HandleAttackHandle;
-        }
-
-        private void HandleAttackHandle()
-        {
-            if(CurrentWeapon.CanShoot)
-                CurrentWeapon.Shooting();
         }
 
         private void Update()

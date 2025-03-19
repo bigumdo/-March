@@ -1,6 +1,7 @@
 using BGD.Agents;
 using BGD.Animators;
 using BGD.Cores;
+using NUnit.Framework;
 using System;
 using UnityEngine;
 
@@ -8,73 +9,72 @@ namespace BGD.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        public bool CanShoot => _currentBulletCnt > 0;
-
+        [field:SerializeField] public WeaponDataSo WeaponDataSO { get; private set; }
         [HideInInspector] public WeaponAnimationTrigger animTrigger;
+        [HideInInspector] public bool CanShooting
+        {
+            get
+            {
+                return _currentBulletCnt > 0;
+            }
+        }
+
+        [SerializeField] private WeaponStateListSO _states;
 
         [SerializeField] private Transform _firePos;
-        [SerializeField] private AnimParamSO _shootParam;
         [SerializeField] private GameObject _bulletPrefab;
-        [SerializeField] private WeaponDataSo _weaponDataSO;
+
 
         private WeaponRenderer _renderer;
         private AgentWeapon _weapon;
         private bool isEndTrigger;
-        private float _listShootingTime;
         private int _currentBulletCnt;
-        private float _shootDealyTime;
+        private int _maxBulletCnt;
+
+
+        private WeaponStateMachine _stateMachine;
 
         private void Awake()
         {
             _weapon = transform.parent.GetComponent<AgentWeapon>();
             animTrigger = GetComponentInChildren<WeaponAnimationTrigger>();
             _renderer = GetComponentInChildren<WeaponRenderer>();
-            _shootDealyTime = _weaponDataSO.dealyTime;
-            Reload();
-        }
 
-        public void Reload()
-        {
-            _currentBulletCnt = _weaponDataSO.bulletCnt;
+            _stateMachine = new WeaponStateMachine(this, _states);
+            _currentBulletCnt = _maxBulletCnt = WeaponDataSO.bulletCnt;
         }
 
         private void Start()
         {
-            animTrigger.OnAnimationEndTrigger += HandleAttackEndTrigger;
-            animTrigger.OnAttackTrigger += HandleAttackTrigger;
+            _stateMachine.Initialize(WeaponStateEnum.Idle);
+
         }
 
-        private void OnDestroy()
+        public void Reload()
         {
-            animTrigger.OnAnimationEndTrigger -= HandleAttackEndTrigger;
-            animTrigger.OnAttackTrigger += HandleAttackTrigger;
+            _currentBulletCnt = _maxBulletCnt;
         }
 
-        private void HandleAttackTrigger()
+        public void BulletReduction()
         {
-            GameObject bullet = Instantiate(_bulletPrefab, _firePos.position, Quaternion.identity);
-            bullet.transform.right = _firePos.right;
-        }
-
-        private void HandleAttackEndTrigger()
-        {
-            isEndTrigger = true;
-            _renderer.SetParam(_shootParam, false);
-            _listShootingTime = Time.time;
             _currentBulletCnt--;
-        }
-
-        public void Shooting()
-        {
-            if (_listShootingTime + _shootDealyTime < Time.time)
-            {
-                isEndTrigger = false;
-                _renderer.SetParam(_shootParam, true);
-            }
         }
 
         private void Update()
         {
+            _stateMachine.Update();
+        }
+
+        public void ChangeState(WeaponStateEnum changeState)
+        {
+            _stateMachine.ChangeState(changeState);
+        }
+
+        public void Fire()
+        {
+            GameObject bullet = Instantiate(_bulletPrefab);
+            bullet.transform.position = _firePos.position;
+            bullet.transform.right = _firePos.right;
         }
     }
 }

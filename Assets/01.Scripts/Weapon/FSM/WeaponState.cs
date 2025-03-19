@@ -1,5 +1,7 @@
 using BGD.Animators;
+using BGD.Players;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace BGD.Weapons
 {
@@ -24,11 +26,13 @@ namespace BGD.Weapons
         {
             _renderer.SetParam(_animParam, true);
             _animTrigger.OnAnimationEndTrigger += AnimationEndTrigger;
+            _isEndTrigger = false;
         }
 
         public virtual void Exit()
         {
-
+            _animTrigger.OnAnimationEndTrigger -= AnimationEndTrigger;
+            _renderer.SetParam(_animParam, false);
         }
 
         public virtual void Update()
@@ -38,7 +42,7 @@ namespace BGD.Weapons
 
         public virtual void AnimationEndTrigger()
         {
-
+            _isEndTrigger = true;
         }
     }
 }

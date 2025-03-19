@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: PlayerStates
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 11400000, guid: c27820a6c37aab34d8d4cf12fc5e2222, type: 2}
   - {fileID: 11400000, guid: a3729da28b197134580ab07aa11679e9, type: 2}
   - {fileID: 11400000, guid: a5e1fbc26d2c11941be763f18cb89880, type: 2}
   - {fileID: 11400000, guid: 7388f9bbb75036540abbb7d82854f57d, type: 2}
