@@ -5,10 +5,8 @@ namespace BGD.Weapons
 {
     public class PistolReloadState : WeaponState
     {
-        private Weapon _weapon;
         public PistolReloadState(Weapon weapon, AnimParamSO animParam) : base(weapon, animParam)
         {
-            _weapon = weapon;
         }
 
         public override void Update()

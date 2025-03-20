@@ -14,7 +14,6 @@ namespace BGD.Players
         public override void Enter()
         {
             base.Enter();
-            _mover.CanMove = true;
         }
 
         public override void Update()

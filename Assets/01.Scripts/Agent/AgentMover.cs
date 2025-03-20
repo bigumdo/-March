@@ -64,6 +64,16 @@ namespace BGD.Agents
             _rbcompo.AddForce(force, forceMode2D);
         }
 
+        public void AddForceX(float force, ForceMode2D forceMode2D = ForceMode2D.Impulse)
+        {
+            _rbcompo.AddForceX(force, forceMode2D);
+        }
+
+        public void AddForceY(float force, ForceMode2D forceMode2D = ForceMode2D.Impulse)
+        {
+            _rbcompo.AddForceY(force, forceMode2D);
+        }
+
         public void StopImmediately(bool resetYAxis = false)
         {
             if(resetYAxis)

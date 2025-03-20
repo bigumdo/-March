@@ -7,11 +7,9 @@ namespace BGD.Weapons
 {
     public class PistolEmptyingState : WeaponState
     {
-        private Weapon _weapon;
         private Player _player;
         public PistolEmptyingState(Weapon weapon, AnimParamSO animParam) : base(weapon, animParam)
         {
-            _weapon = weapon;
             _player = weapon.transform.root.GetComponent<Player>();
         }
 

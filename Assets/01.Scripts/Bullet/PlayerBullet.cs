@@ -41,13 +41,13 @@ namespace BGD.Weapons
                 _rbCompo.linearVelocity = Vector2.zero;
 
                 test = true;
-                GameObject effect = Instantiate(_particle);
-                effect.transform.position = hit.point;
-                effect.transform.rotation = Quaternion.Euler(new Vector3(-transform.rotation.eulerAngles.z + 180, 90, 0));
-                if (hit.collider.TryGetComponent(out BaseInteraction interaction))
-                {
-                    interaction.Interaction();
-                }
+                //GameObject effect = Instantiate(_particle);
+                //effect.transform.position = hit.point;
+                //effect.transform.rotation = Quaternion.Euler(new Vector3(-transform.rotation.eulerAngles.z + 180, 90, 0));
+                //if (hit.collider.TryGetComponent(out BaseInteraction interaction))
+                //{
+                //    interaction.Interaction();
+                //}
                 GameObject.Destroy(this.gameObject);
 
             }

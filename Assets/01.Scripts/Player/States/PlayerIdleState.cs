@@ -14,7 +14,7 @@ namespace BGD.Players
         public override void Enter()
         {
             base.Enter();
-            _mover.SetRigidType(RigidbodyType2D.Kinematic);
+            //_mover.SetRigidType(RigidbodyType2D.Kinematic);
             _mover.StopImmediately();
             _mover.CanMove = false;
         }
@@ -35,7 +35,8 @@ namespace BGD.Players
 
         public override void Exit()
         {
-            _mover.SetRigidType(RigidbodyType2D.Dynamic);
+            _mover.CanMove = true;
+            //_mover.SetRigidType(RigidbodyType2D.Dynamic);
             base.Exit();
         }
     }

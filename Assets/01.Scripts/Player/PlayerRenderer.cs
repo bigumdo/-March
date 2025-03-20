@@ -21,7 +21,7 @@ namespace BGD.Players
             Vector2 MouseDir = MouseManager.Instance.MouseDir;
             MouseAngle = Mathf.Atan2(MouseDir.y - _player.transform.position.y
                 , MouseDir.x - _player.transform.position.x) * Mathf.Rad2Deg;
-            float xMove = MouseDir.x > 0 ? 1 : -1;
+            float xMove = MouseDir.x - _player.transform.position.x > 0 ? 1 : -1;
             FlipControl(xMove);
         }
     }

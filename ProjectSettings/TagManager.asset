@@ -47,5 +47,8 @@ TagManager:
   - name: UI
     uniqueID: 1193481609
     locked: 0
+  - name: TIle
+    uniqueID: 527816075
+    locked: 0
   m_RenderingLayers:
   - Default

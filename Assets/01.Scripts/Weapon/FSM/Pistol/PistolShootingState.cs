@@ -6,14 +6,12 @@ namespace BGD.Weapons
 {
     public class PistolShootingState : WeaponState
     {
-        private Weapon _weapon;
         private float _lastShootingTime;
         private float _shootDealyTime;
 
 
         public PistolShootingState(Weapon weapon, AnimParamSO animParam) : base(weapon, animParam)
         {
-            _weapon = weapon;
             _shootDealyTime = weapon.WeaponDataSO.dealyTime;
         }
 
@@ -28,6 +26,7 @@ namespace BGD.Weapons
             if (!_weapon.CanShooting)
             {
                 _weapon.ChangeState(WeaponStateEnum.Empty);
+                return;
             }
             _animTrigger.OnAttackTrigger += HandleAttackEvent;
         }
