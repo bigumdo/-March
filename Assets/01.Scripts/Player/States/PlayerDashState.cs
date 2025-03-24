@@ -1,6 +1,8 @@
 using BGD.Agents;
 using BGD.Animators;
+using BGD.Cores;
 using BGD.FSM;
+using BGD.StatSystem;
 using DG.Tweening;
 using NUnit.Framework;
 using System.Collections;
@@ -11,34 +13,36 @@ namespace BGD.Players
 {
     public class PlayerDashState : AgentState
     {
-        private Coroutine _spawnCoroutine;
         private Player _player;
         private AgentMover _mover;
-        private List<GameObject> _effects = new List<GameObject>();
-        private AgentRenderer _renderer;
+        private AgentAfterimage _afterimage;
+        private float _lastShootingTime;
+        private float _shootDealyTime;
 
         public PlayerDashState(Agent agent, AnimParamSO animParam) : base(agent, animParam)
         {
             _player = agent as Player;
             _mover = agent.GetCompo<AgentMover>(true);
-            _renderer = agent.GetCompo<AgentRenderer>(true);
+            _afterimage = agent.GetCompo<AgentAfterimage>(true);
+            
         }
 
         public override void Enter()
         {
-            base.Enter();
-            _mover.StopImmediately(true);
-            _mover.AddForceX(10);
-            _effects.Clear();
-            _spawnCoroutine = _player.StartCoroutine(DashEffect());
-        }
-
-        private IEnumerator DashEffect()
-        {
-            while(true)
+            StatSO stat = _player.GetCompo<AgentStat>().GetStat(_player.dashCooltimeStat);
+            if (stat.Value + _lastShootingTime > Time.time)
             {
-                yield return new WaitForSeconds(0.2f);
-                Spawn();
+                _player.ChangeState(FSMState.IDLE);
+            }
+            else
+            {
+                base.Enter();
+                _mover.CanMove = false;
+                _mover.StopImmediately(true);
+                StatSO dashPowerStat = _player.GetCompo<AgentStat>().GetStat(_player.dashPowerStat);
+                Vector2 dir = (MouseManager.Instance.MouseDir - (Vector2)_player.transform.position).normalized;
+                _mover.AddForce(dir * dashPowerStat.Value);
+                _afterimage.Play();
             }
         }
 
@@ -46,35 +50,18 @@ namespace BGD.Players
         {
             base.Update();
             if (_isEndTrigger)
+            {
+                _lastShootingTime = Time.time;
                 _player.ChangeState(FSMState.IDLE);
+                _mover.StopImmediately(true);
+                _afterimage.Stop();
+            }
         }
 
         public override void Exit()
         {
-            _player.StopCoroutine(_spawnCoroutine);
-
-            Debug.Log(_effects.Count);
-            for (int i = 0; i < _effects.Count; ++i)
-            {
-                Debug.Log(i);
-                SpriteRenderer renderer = _effects[i].transform.GetComponent<SpriteRenderer>();
-                if (renderer != null && renderer.color.a <= 0)
-                {
-                    GameObject.Destroy(_effects[i]);
-                }
-            }
-            _effects.Clear();
+            _mover.CanMove = true;
             base.Exit();
-        }
-
-        private void Spawn()
-        {
-            GameObject obj = new GameObject();
-            SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
-            renderer.sprite = _renderer.SpriteRenderer.sprite;
-            obj.transform.position = _player.transform.position;
-            _effects.Add(obj);
-            renderer.DOFade(0, 0.1f);
         }
 
     }

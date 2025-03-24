@@ -22,7 +22,7 @@ namespace BGD.Players
         public override void Update()
         {
             base.Update();
-            _mover.StopImmediately(true);
+            //_mover.StopImmediately(true);
             if (Mathf.Abs(_player.PlayerInput.InputDirection.x) > 0.5f)
             {
                 _player.ChangeState(FSMState.MOVE);

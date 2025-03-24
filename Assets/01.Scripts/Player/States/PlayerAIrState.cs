@@ -1,6 +1,7 @@
 using BGD.Agents;
 using BGD.Animators;
 using BGD.FSM;
+using System;
 using UnityEngine;
 
 namespace BGD.Players
@@ -18,6 +19,18 @@ namespace BGD.Players
         public override void Enter()
         {
             base.Enter();
+            _player.PlayerInput.DashEvent += HandleDashEvent;
+        }
+
+        public override void Exit()
+        {
+            _player.PlayerInput.DashEvent -= HandleDashEvent;
+            base.Exit();
+        }
+
+        private void HandleDashEvent()
+        {
+            _player.ChangeState(FSMState.DASH);
         }
 
         public override void Update()

@@ -33,6 +33,13 @@ namespace BGD.Players
             base.Exit();
         }
 
+        public override void Update()
+        {
+            base.Update();
+            if (!_mover.IsGrounded)
+                _player.ChangeState(FSMState.FALL);
+        }
+
         private void HandleDashEvent()
         {
             _player.ChangeState(FSMState.DASH);

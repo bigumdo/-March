@@ -16,6 +16,10 @@ namespace BGD.Players
 
         [Header("Stat")]
         public StatSO jumpPowerStat;
+        public StatSO jumpCntStat;
+        public StatSO dashPowerStat;
+        public StatSO dashCooltimeStat;
+        public StatSO dashCntStat;
 
         private StateMachine _stateMachine;
 
