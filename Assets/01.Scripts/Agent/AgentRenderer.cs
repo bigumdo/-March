@@ -6,16 +6,16 @@ namespace BGD.Agents
     public class AgentRenderer : MonoBehaviour, IAgentComponent
     {
         public float FacingDirection { get; protected set; } = 1;
+        public SpriteRenderer SpriteRenderer { get; protected set; }
 
         private Agent _agent;
         private Animator _animator;
-        private SpriteRenderer _spriteRenderer;
 
         public virtual void Initialize(Agent agent)
         {
             _agent = agent;
             _animator = GetComponent<Animator>();
-            _spriteRenderer = agent.GetComponent<SpriteRenderer>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
 

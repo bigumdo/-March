@@ -22,13 +22,20 @@ namespace BGD.Players
             base.Enter();
             //_player.PlayerInput.AttackEvent += HandleAttackEvent;
             _player.PlayerInput.JumpEvent += HandleJumpEvent;
+            _player.PlayerInput.DashEvent += HandleDashEvent;
         }
 
         public override void Exit()
         {
             //_player.PlayerInput.AttackEvent -= HandleAttackEvent;
             _player.PlayerInput.JumpEvent -= HandleJumpEvent;
+            _player.PlayerInput.DashEvent -= HandleDashEvent;
             base.Exit();
+        }
+
+        private void HandleDashEvent()
+        {
+            _player.ChangeState(FSMState.DASH);
         }
 
         private void HandleJumpEvent()

@@ -12,7 +12,8 @@ namespace BGD.FSM
         ATTACK,
         BATTLE,
         JUMP,
-        FALL
+        FALL,
+        DASH
     }
 
     [CreateAssetMenu(menuName = "SO/FSM/AgentStateListSO")]
