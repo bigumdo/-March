@@ -16,7 +16,7 @@ namespace BGD.Players
         private Player _player;
         private AgentMover _mover;
         private AgentAfterimage _afterimage;
-        private float _lastShootingTime;
+        private float _lastShootingTime = -10;
         private float _shootDealyTime;
 
         public PlayerDashState(Agent agent, AnimParamSO animParam) : base(agent, animParam)

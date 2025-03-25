@@ -1,3 +1,4 @@
+using BGD.ObjPooling;
 using BGD.Players;
 using BGD.StatSystem;
 using DG.Tweening;
@@ -14,8 +15,6 @@ namespace BGD.Agents
         [SerializeField] private float _fadeTime;
 
         private Player _player;
-        private AgentMover _mover;
-        private List<GameObject> _effects = new List<GameObject>();
         private AgentRenderer _renderer;
 
         private Coroutine _spawnCoroutine;
@@ -24,27 +23,12 @@ namespace BGD.Agents
         {
             _player = agent as Player;
             _renderer = agent.GetCompo<AgentRenderer>(true);
-            _mover = agent.GetCompo<AgentMover>(true);
         }
         public void AfterInit()
         {
 
         }
-
-        private void Update()
-        {
-            if(_effects.Count > 0)
-                for (int i = 0; i < _effects.Count; ++i)
-                {
-                    SpriteRenderer renderer = _effects[i].transform.GetComponent<SpriteRenderer>();
-                    if (renderer != null && renderer.color.a <= 0)
-                    {
-                        GameObject.Destroy(_effects[i]);
-                        _effects.Remove(_effects[i]);
-                    }
-                }
-        }
-
+        
         public void Play()
         {
             if (_spawnCoroutine != null)
@@ -68,18 +52,14 @@ namespace BGD.Agents
 
         }
 
-
-
         private void AfterimageSpawn()
         {
-            GameObject obj = new GameObject();
-            SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
-            renderer.sprite = _renderer.SpriteRenderer.sprite;
-            renderer.flipX = _renderer.FacingDirection > 0 ? false : true ;
-            renderer.color = new Vector4(1,1,1,0.75f);
+            AfterImage obj = PoolingManager.Instance.Pop("AfterImage") as AfterImage;
+            obj.renderer.sprite = _renderer.SpriteRenderer.sprite;
+            obj.renderer.flipX = _renderer.FacingDirection > 0 ? false : true ;
+            obj.renderer.color = new Vector4(1,1,1, 0.75f);
             obj.transform.position = _player.transform.position;
-            _effects.Add(obj);
-            renderer.DOFade(0, _fadeTime);
+            obj.renderer.DOFade(0, _fadeTime);
         }
 
     }

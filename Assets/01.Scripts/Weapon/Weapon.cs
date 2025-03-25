@@ -1,6 +1,7 @@
 using BGD.Agents;
 using BGD.Animators;
 using BGD.Cores;
+using BGD.ObjPooling;
 using NUnit.Framework;
 using System;
 using UnityEngine;
@@ -72,7 +73,7 @@ namespace BGD.Weapons
 
         public void Fire()
         {
-            GameObject bullet = Instantiate(_bulletPrefab);
+            PlayerBullet bullet = PoolingManager.Instance.Pop("Bullet") as PlayerBullet;
             bullet.transform.position = _firePos.position;
             bullet.transform.right = _firePos.right;
         }

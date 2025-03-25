@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0172096d4407945a43c7e5f69dfc7f, type: 3}
+  m_Name: PoolingDatas
+  m_EditorClassIdentifier: 
+  datas:
+  - typeName: PopUpText
+    poolingName: NONONONO
+    prefab: {fileID: 4961512170109302800, guid: d64472d3586f85e4bb2396ac5a549f91, type: 3}
+    poolingSettingCnt: 5
+  - typeName: Bullet
+    poolingName: PlayerBullet
+    prefab: {fileID: 1671655191376707733, guid: e8f7c4be9759a394dbc0708ce5ec5d2c, type: 3}
+    poolingSettingCnt: 20
+  - typeName: AfterImage
+    poolingName: AfterImage
+    prefab: {fileID: 8418890323369027127, guid: c8f0f187905a8e84cb55cfbd830394fd, type: 3}
+    poolingSettingCnt: 30

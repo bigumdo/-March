@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a60402638998bc478bb7a75f0b8e1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: Bullet
   _radius: 0.2
   _speed: 100
   _targetLayer:
