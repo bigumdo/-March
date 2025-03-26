@@ -10,9 +10,16 @@ namespace BGD.Players
         [Header("StatSetting")]
         public StatSO jumpCntStat;
 
+        private Player _player;
         private float _currentJumpCnt;
         private float _maxJumpCnt;
         public bool CanJump => _currentJumpCnt > 0;
+
+        public override void Initialize(Agent agent)
+        {
+            base.Initialize(agent);
+            _player = agent as Player;
+        }
 
         public override void AfterInit()
         {

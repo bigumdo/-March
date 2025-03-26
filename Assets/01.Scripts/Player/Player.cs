@@ -1,9 +1,11 @@
 using BGD.Agents;
 using BGD.Animators;
 using BGD.FSM;
+using BGD.Obstacles;
 using BGD.StatSystem;
 using System;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace BGD.Players
 {
@@ -13,6 +15,7 @@ namespace BGD.Players
         public AnimParamSO attackCompoParam;
         public AgentHealth Health { get; private set; }
         [field : SerializeField] public PlayerInputSO PlayerInput {get; private set;}
+        [HideInInspector] public BasePlatform Platform;
 
         [Header("Stat")]
         public StatSO jumpPowerStat;
@@ -22,7 +25,6 @@ namespace BGD.Players
         public StatSO dashCntStat;
 
         private StateMachine _stateMachine;
-
         protected override void Awake()
         {
             base.Awake();
@@ -44,6 +46,12 @@ namespace BGD.Players
         public void ChangeState(FSMState changeState)
         {
             _stateMachine.ChangeState(changeState);
+        }
+
+        public override void HandleDeadEvent()
+        {
+            base.HandleDeadEvent();
+            ChangeState(FSMState.DEAD);
         }
     }
 }

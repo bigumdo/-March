@@ -48,7 +48,6 @@ namespace BGD.Weapons
         private void Start()
         {
             _stateMachine.Initialize(WeaponStateEnum.Idle);
-
         }
 
         public void Reload()

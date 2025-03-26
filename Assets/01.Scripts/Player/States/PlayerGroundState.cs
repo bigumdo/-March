@@ -47,8 +47,10 @@ namespace BGD.Players
 
         private void HandleJumpEvent()
         {
-            if(_mover.CanJump)
-            _player.ChangeState(FSMState.JUMP);
+            if (_player.PlayerInput.InputDirection.y == -1 && _player.Platform != null)
+                _player.Platform.SetIgnore(_player.GetComponent<Collider2D>(), 1f);
+            else if(_mover.CanJump)
+                _player.ChangeState(FSMState.JUMP);
         }
 
         private void HandleAttackEvent()

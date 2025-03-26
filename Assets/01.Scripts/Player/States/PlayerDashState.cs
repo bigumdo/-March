@@ -8,6 +8,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace BGD.Players
 {
@@ -29,6 +30,7 @@ namespace BGD.Players
 
         public override void Enter()
         {
+            _player.gameObject.layer = LayerMask.NameToLayer("Ghost");
             StatSO stat = _player.GetCompo<AgentStat>().GetStat(_player.dashCooltimeStat);
             if (stat.Value + _lastShootingTime > Time.time)
             {
@@ -49,7 +51,9 @@ namespace BGD.Players
         public override void Update()
         {
             base.Update();
-            if (_isEndTrigger)
+            RaycastHit2D hit = Physics2D.Raycast(_player.transform.position, _player.transform.right,0.5f,1 << LayerMask.NameToLayer("Ground"));
+
+            if (_isEndTrigger || hit.collider != null)
             {
                 _lastShootingTime = Time.time;
                 _player.ChangeState(FSMState.IDLE);
@@ -60,9 +64,9 @@ namespace BGD.Players
 
         public override void Exit()
         {
+            _player.gameObject.layer = LayerMask.NameToLayer("Player");
             _mover.CanMove = true;
             base.Exit();
         }
-
     }
 }
